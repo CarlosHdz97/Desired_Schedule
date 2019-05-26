@@ -1,4 +1,4 @@
-<template>
+<template id="template">
   <div id="app" class="container-fluid" :style="[styles]">
     <nav id="nav" class="row text-center">
       <div class="container">
@@ -6,14 +6,21 @@
         <router-link to="/about">About</router-link>
       </div>
     </nav>
-    <p>{{heightFooter}}</p>
     <router-view/>
-    <footer id="footer"  refs ="footer" class="footer row align-items-center text-center text-light">
-      <div class="col-md d-none d-sm-block">
-        <img src="./assets/ic_schedule.png" alt="Desired Schedule" height="100">
+    <footer id="footer"  class="footer row align-items-center text-center text-light">
+      <div class="col-md d-sm-none d-none d-md-block">
+        <!--
+        <span>
+          <small> UNIDAD PROFESIONAL INTERDISCIPLINARIA DE INGENIERIA CIENCIAS SOCIALES Y ADMINISTRATIVAS </small><br>
+          <strong> UPIICSA</strong>
+        </span>
+        -->
       </div>
-      <div class="col-md">
-        hola
+      <div class="col-md text-md-right">
+        <span>
+          <strong><em>Desired Schedule</em></strong><br>
+          <small>Proyecto &copy; 2019</small>
+        </span>
       </div>
     </footer>
   </div>
@@ -32,6 +39,10 @@ template {
   width: 100%;
   background: #78184a;
 }
+form{
+  border-radius: 0px 0px 15px 15px;
+  box-shadow: 0px 5px 15px #d6d6d6;
+}
 </style>
 
 <script>
@@ -45,13 +56,12 @@ export default {
     }
   },
   mounted(){
-    this.calcularHeightFooter()
+    this.calcularHeightFooter();
   },
   methods:{
     calcularHeightFooter(){
       this.heightFooter = document.getElementById("footer").clientHeight;
       this.styles["margin-bottom"] = this.heightFooter+2+'px';
-      console.log(this.styles);
     }
   }
 }
