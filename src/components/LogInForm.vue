@@ -8,7 +8,7 @@
             <div class="form-group">
                 <label>Contraseña <strong class="text-info">(*)</strong>:</label>
                 <div class="input-group">
-                    <input :type="type_password" v-model="password" class="form-control" placeholder="Ingrese su correo electrónico" required>
+                    <input :type="type_password" v-model="password" class="form-control" placeholder="Ingrese su cpntraseña" required>
                     <span class="input-group-text" @click="revealPassword"><font-awesome-icon :icon="ic_password"/></span>
                 </div>
             </div>
@@ -23,7 +23,7 @@ export default {
     name: 'LogInForm',
     data(){
         return{
-            ic_password:'eye',
+            ic_password:'eye-slash',
             type_password:'password',
             password:''
         }
@@ -35,10 +35,10 @@ export default {
         revealPassword(){
             if(this.ic_password=='eye'){
                 this.ic_password = 'eye-slash';
-                this.type_password = 'text';
+                this.type_password = 'password';
             }else{
                 this.ic_password = 'eye';
-                this.type_password = 'password';
+                this.type_password = 'text';
             }
         }
     }

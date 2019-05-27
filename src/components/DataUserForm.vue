@@ -21,6 +21,7 @@
                 <div class="form-group col-md-6">
                     <label>CURP <strong class="text-info">(*)</strong>:</label>
                     <input type="text" class="form-control" placeholder="Ingrese su CURP" required>
+                    <p class="text-right p-0"><a href="https://www.gob.mx/curp/" target="_blank">¿No conoces tu CURP?</a></p>
                 </div>
             </div>
             <p class="text-dark h4">Datos academicos</p>
@@ -109,8 +110,8 @@ export default {
             password:'',
             confirm_password:'',
             msg_err:'',
-            ic_password:'eye',
-            ic_confirm_password: 'eye',
+            ic_password:'eye-slash',
+            ic_confirm_password: 'eye-slash',
             type_password:'password',
             type_confirm_password:'password'
         }
@@ -143,19 +144,19 @@ export default {
         revealPassword(){
             if(this.ic_password=='eye'){
                 this.ic_password = 'eye-slash';
-                this.type_password = 'text';
+                this.type_password = 'password';
             }else{
                 this.ic_password = 'eye';
-                this.type_password = 'password';
+                this.type_password = 'text';
             }
         },
         revealConfirmPassword(){
             if(this.ic_confirm_password=='eye'){
                 this.ic_confirm_password = 'eye-slash';
-                this.type_confirm_password = 'text';
+                this.type_confirm_password = 'password';
             }else{
                 this.ic_confirm_password = 'eye';
-                this.type_confirm_password = 'password';
+                this.type_confirm_password = 'text';
             }
         }
     }

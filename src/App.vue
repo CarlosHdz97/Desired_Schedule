@@ -1,9 +1,38 @@
 <template id="template">
   <div id="app" class="container-fluid" :style="[styles]">
-    <nav id="nav" class="row text-center">
-      <div class="container">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Desired Schedule</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <router-link to="/preference" class="nav-link">Preferencias</router-link>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Disponibilidad</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Horario</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Profesores</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Materias</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Periodos
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        </ul>
       </div>
     </nav>
     <router-view/>
@@ -61,7 +90,7 @@ export default {
   methods:{
     calcularHeightFooter(){
       this.heightFooter = document.getElementById("footer").clientHeight;
-      this.styles["margin-bottom"] = this.heightFooter+2+'px';
+      this.styles["margin-bottom"] = this.heightFooter+10+'px';
     }
   }
 }
