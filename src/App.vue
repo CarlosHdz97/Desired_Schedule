@@ -1,40 +1,25 @@
 <template id="template">
   <div id="app" class="container-fluid" :style="[styles]">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Desired Schedule</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <router-link to="/preference" class="nav-link">Preferencias</router-link>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Disponibilidad</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Horario</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Profesores</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Materias</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Periodos
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <b-navbar toggleable="lg" type="light" variant="light">
+      <b-navbar-brand><router-link to="/" class="text-dark nav-link">Desired Schedule</router-link></b-navbar-brand>
+
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav>
+          <router-link to="/preference" class="nav-link">Preferencias</router-link>
+          <a class="nav-link" href="#">Disponibilidad</a>
+          <a class="nav-link" href="#">Horario</a>
+          <a class="nav-link" href="#">Profesores</a>
+          <router-link to="/materia" class="nav-link">Materia</router-link>
+        </b-navbar-nav>
+
+        <!-- Right aligned nav items -->
+        <b-navbar-nav class="ml-auto text-right">
+            <a class="nav-link" href="#"><font-awesome-icon icon="sign-out-alt" class="fa-lg"/></a>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
     <router-view/>
     <footer id="footer"  class="footer row align-items-center text-center text-light">
       <div class="col-md d-sm-none d-none d-md-block">
