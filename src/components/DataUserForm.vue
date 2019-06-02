@@ -28,11 +28,11 @@
             <hr>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label>Nivel academico <strong class="text-info">(*)</strong>:</label>
-                    <input type="text" class="form-control" placeholder="Ingrese su nivel academico" required>
+                    <label>Nivel máximo de estudios<strong class="text-info">(*)</strong>:</label>
+                    <b-form-select :options="options_niveles_estudio" required></b-form-select>
                 </div>
                 <div class="form-group col-md-6">
-                    <label>Formación academica <strong class="text-info">(*)</strong>:</label>
+                    <label>Licenciatura en <strong class="text-info">(*)</strong>:</label>
                     <input type="text" class="form-control" placeholder="Ingrese su formación academica" required>
                 </div>
             </div>
@@ -51,19 +51,17 @@
             <p class="text-dark h4">Datos laborales</p>
             <hr>
             <div class="form-row">
-                <div class="form-group col-md-7">
+                <div class="form-group col-md-6">
                     <label>Dictamen categoría docente <strong class="text-info">(*)</strong>:</label>
-                    <input type="text" class="form-control" placeholder="Ingrese sus dictamen" required>
+                    <b-form-select :options="options_dictamen" required></b-form-select>
                 </div>
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label>Horas nombramiento <strong class="text-info">(*)</strong>:</label>
                     <select class="custom-select" v-model="horas" required>
                         <option v-for="option in options_hrs" :value="option.value" :key="option.value">{{option.text}}</option>
                     </select>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-8">
+                <div class="form-group col-md-6">
                     <label>Academia de adscripción<strong class="text-info">(*)</strong>:</label>
                     <select class="custom-select" v-model="academia" required>
                         <option v-for="option in options_academias" :value="option.value" :key="option.value">{{option.text}}</option>
@@ -114,7 +112,26 @@ export default {
             ic_password:'eye-slash',
             ic_confirm_password: 'eye-slash',
             type_password:'password',
-            type_confirm_password:'password'
+            type_confirm_password:'password',
+            options_niveles_estudio:[
+                {text: 'Educación básica', value: 'Educación básica'},
+                {text: 'Bachillerato sin carrera técnica', value: 'Bachillerato sin carrera técnica'},
+                {text: 'Bachillerato con carrera técnica', value: 'Bachillerato con carrera técnica'},
+                {text: 'Licenciatura', value: 'Licenciatura'},
+                {text: 'Maestría', value: 'Maestría'},
+                {text: 'Doctorado', value: 'Doctorado'},
+            ],
+            options_dictamen:[
+                {text: 'Titular A', value: 'Titular A'},
+                {text: 'Titular B', value: 'Titular B'},
+                {text: 'Titular C', value: 'Titular C'},
+                {text: 'Asociado A', value: 'Asociado A'},
+                {text: 'Asociado B', value: 'Asociado B'},
+                {text: 'Asociado C', value: 'Asociado C'},
+                {text: 'Asistente A', value: 'Asistente A'},
+                {text: 'Asistente B', value: 'Asistente B'},
+                {text: 'Asistente C', value: 'Asistente C'},
+            ]
         }
     },
     mounted(){

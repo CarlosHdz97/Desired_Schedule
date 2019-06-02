@@ -8,7 +8,7 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <router-link to="/preference" class="nav-link">Preferencias</router-link>
-          <a class="nav-link" href="#">Disponibilidad</a>
+          <router-link to="/disponibilidad" class="nav-link">Disponibilidad</router-link>
           <router-link to="/horario" class="nav-link">Horario</router-link>
           <router-link to="/profesor" class="nav-link">Profesor</router-link>
           <router-link to="/materia" class="nav-link">Materia</router-link>

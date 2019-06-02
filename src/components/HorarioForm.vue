@@ -62,7 +62,7 @@
                 <div class="form-group col-md-2">
                     <label><b>Viernes:</b></label><br>
                     <label>Inicio: </label>
-                    <input type="text" class="form-control" min="0">
+                    <input type="time" class="form-control">
                     <label>Termino: </label>
                     <input type="text" class="form-control" min="0">
                 </div>
