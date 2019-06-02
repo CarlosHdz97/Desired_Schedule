@@ -89,7 +89,8 @@
                 </div>
             </div>
             <div class="text-right">
-                <button type="button" class="btn btn btn-dark" @click="logIn">Siguiente</button>
+                <button type="button" class="btn btn btn-dark" @click="logIn">Guardar</button>
+                <router-link to="/" class="btn btn btn-danger ml-3">Cancelar</router-link>
             </div>
         </form>
     </div>

@@ -13,10 +13,10 @@
                 <div class="form-group col-md-6">
                         <label>Materias<strong class="text-info">(*)</strong>:</label>
                         <div class="input-group">
-                        <model-select :options="materias" v-model="materia"></model-select>
-                        <!--<select class="custom-select" v-model="materia">
+                        <!--<model-select :options="materias" v-model="materia"></model-select>-->
+                        <select class="custom-select" v-model="materia">
                             <option v-for="option in materias" :value="option.id" :key="option.id">{{option.text}}</option>
-                        </select>-->
+                        </select>
                         <span class="input-group-text"><font-awesome-icon icon="search"/></span>
                     </div>
                 </div>
@@ -91,7 +91,6 @@
     </div>
 </template>
 <script>
-    import { ModelSelect } from 'vue-search-select'
     export default {
         data(){
             return{

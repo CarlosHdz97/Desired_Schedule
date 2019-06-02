@@ -2,8 +2,11 @@
     <div>
         <form class="p-3">
             <div class="form-group">
-                <label>Correo electrónico <strong class="text-info">(*)</strong>:</label>
-                <input type="email" class="form-control" placeholder="Ingrese su correo electrónico" required>
+                <label>Contraseña<strong class="text-info">(*)</strong>:</label>
+                <div class="input-group">
+                    <input :type="type_password" v-model="password2" class="form-control" placeholder="Ingrese su cpntraseña" required>
+                    <span class="input-group-text" @click="revealPassword"><font-awesome-icon :icon="ic_password"/></span>
+                </div>
             </div>
             <div class="form-group">
                 <label>Contraseña <strong class="text-info">(*)</strong>:</label>
@@ -11,10 +14,9 @@
                     <input :type="type_password" v-model="password" class="form-control" placeholder="Ingrese su cpntraseña" required>
                     <span class="input-group-text" @click="revealPassword"><font-awesome-icon :icon="ic_password"/></span>
                 </div>
-                <router-link to="/reset-password" class="nav-link text-right">No recuerdo mi contraseña</router-link>
             </div>
             <div class="text-right">
-                <button type="button" class="btn btn btn-primary" @click="logIn">Aceptar</button>
+                <button type="button" class="btn btn btn-primary">Aceptar</button>
                 <router-link to="/" class="btn btn btn-danger ml-3">Cancelar</router-link>
             </div>
         </form>
@@ -22,12 +24,13 @@
 </template>
 <script>
 export default {
-    name: 'LogInForm',
+    name: 'PasswordForm',
     data(){
         return{
             ic_password:'eye-slash',
             type_password:'password',
-            password:''
+            password:'',
+            password2:''
         }
     },
     methods:{

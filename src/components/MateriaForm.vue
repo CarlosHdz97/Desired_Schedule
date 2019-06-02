@@ -1,8 +1,6 @@
 <template>
     <div>
         <form class="p-3">
-            <p class="text-dark h4">Materia</p>
-            <hr>
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label>Clave:</label>

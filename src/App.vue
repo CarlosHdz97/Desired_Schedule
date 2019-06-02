@@ -9,8 +9,8 @@
         <b-navbar-nav>
           <router-link to="/preference" class="nav-link">Preferencias</router-link>
           <a class="nav-link" href="#">Disponibilidad</a>
-          <a class="nav-link" href="#">Horario</a>
-          <a class="nav-link" href="#">Profesores</a>
+          <router-link to="/horario" class="nav-link">Horario</router-link>
+          <router-link to="/profesor" class="nav-link">Profesor</router-link>
           <router-link to="/materia" class="nav-link">Materia</router-link>
         </b-navbar-nav>
 
@@ -21,14 +21,12 @@
       </b-collapse>
     </b-navbar>
     <router-view/>
-    <footer id="footer"  class="footer row align-items-center text-center text-light">
+    <footer id="footer"  class="footer row align-items-center text-left text-light">
       <div class="col-md d-sm-none d-none d-md-block">
-        <!--
         <span>
           <small> UNIDAD PROFESIONAL INTERDISCIPLINARIA DE INGENIERIA CIENCIAS SOCIALES Y ADMINISTRATIVAS </small><br>
           <strong> UPIICSA</strong>
         </span>
-        -->
       </div>
       <div class="col-md text-md-right">
         <span>
