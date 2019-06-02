@@ -1,6 +1,6 @@
 module.exports = {
-  publicPath: undefined,
-  outputDir: undefined,
+  publicPath: '/Desired_Schedule/',
+  outputDir: 'docs',
   assetsDir: undefined,
   runtimeCompiler: undefined,
   productionSourceMap: undefined,
