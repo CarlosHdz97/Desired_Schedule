@@ -24,8 +24,13 @@
             <div class="text-center">
                 <b-button pill variant="primary" @click="addSubject">+</b-button>
             </div>
-            <div class="text-right">
-                <button type="submit" class="btn btn btn-dark">Guardar cambios</button>
+            <div class="text-right mt-2">
+                <b-alert show variant="warning" v-if="materias.length<1" class="text-justify">
+                    <h4 class="alert-heading">No hay materias por agregar</h4>
+                    <hr>
+                    <p class="mb-0">Agrege al menos una materia para continuar</p>
+                </b-alert>
+                <button type="submit" class="btn btn btn-dark" v-if="materias.length>0">Guardar cambios</button>
             </div>
         </form>
         <b-card class="mt-3" header="Form Data Result">
@@ -38,8 +43,9 @@ export default {
     name: 'MateriaForm',
     data(){
         return{
+            counter:1,
             materias: [
-                {index:1, cve:'001', subject: 'Ingles', time:'2'}
+                {index:1, cve:'', subject:'', time:''}
                 ]
         }
     },
@@ -47,8 +53,8 @@ export default {
     },
     methods:{
         addSubject(){
-            let index = this.materias.length+1;
-            this.materias.push({index: index, cve:'', subject: '', time:''});
+            this.counter +=1;
+            this.materias.push({index: this.counter, cve:'', subject: '', time:''});
         },
         removeSubject(subject){
             var index = this.materias.map(function (materia) { return materia.index;}).indexOf(subject.index);

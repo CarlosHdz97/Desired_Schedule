@@ -14,7 +14,7 @@
                         <label>Materias<strong class="text-info">(*)</strong>:</label>
                         <div class="input-group">
                         <!--<model-select :options="materias" v-model="materia"></model-select>-->
-                        <select class="custom-select" v-model="materia">
+                        <select class="custom-select" v-model="materia" @change="addSubject(materia)">
                             <option v-for="option in materias" :value="option.id" :key="option.id">{{option.text}}</option>
                         </select>
                         <span class="input-group-text"><font-awesome-icon icon="search"/></span>
@@ -96,7 +96,8 @@
             return{
                 materias:[],
                 academias:[
-                    {text: 'Informática', id: 1, materias:[
+                    {text: 'Informática', id: 1, 
+                    materias:[
                         {text: 'materia 1', id: 1},
                         {text: 'materia 2', id: 2},
                         {text: 'materia 3', id: 3},
@@ -108,7 +109,7 @@
                     ]},
                 ],
                 academia:1,
-                materia:1,
+                materia:2,
             }
         },
         mounted(){
@@ -120,6 +121,9 @@
             selectMaterias(){
                 var academia = this.academias.filter(academia => academia.id == this.academia);
                 this.materias = academia[0]["materias"];
+            },
+            addSubject(materia){
+                alert(materia);
             }
         }
     }
