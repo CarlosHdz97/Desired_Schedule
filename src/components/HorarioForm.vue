@@ -10,11 +10,15 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label>Materia <strong class="text-info">(*)</strong>:</label>
-                    <input type="text" class="form-control" placeholder="Ingrese el nombre de la materia" required>
+                    <select class="custom-select">
+                        <option v-for="option in materias" :value="option.id" :key="option.id">{{option.nombre}}</option>
+                    </select>
                 </div>
                 <div class="form-group col-md-4">
                     <label>Profesor:</label>
-                    <input type="text" class="form-control" min="0">
+                    <select class="custom-select">
+                        <option v-for="option in materias" :value="option.id" :key="option.id">{{option.nombre}}</option>
+                    </select>
                 </div>
                 <div class="form-group col-md-1">
                     <label>Salon:</label>
@@ -34,37 +38,37 @@
                 <div class="form-group col-md-2">
                     <label><b>Lunes:</b></label><br>
                     <label>Inicio: </label>
-                    <input type="text" class="form-control" min="0">
+                    <input type="time" step="9000" class="form-control">
                     <label>Termino: </label>
-                    <input type="text" class="form-control" min="0">
+                    <input type="time" step="9000" class="form-control">
                 </div>
                 <div class="form-group col-md-2">
                     <label><b>Martes: </b></label><br>
                     <label>Inicio: </label>
-                    <input type="text" class="form-control" min="0">
+                    <input type="time" step="9000" class="form-control">
                     <label>Termino: </label>
-                    <input type="text" class="form-control" min="0">
+                    <input type="time" step="9000" class="form-control">
                 </div>
                 <div class="form-group col-md-2">
                     <label><b>Miercoles:</b></label><br>
                     <label>Inicio: </label>
-                    <input type="text" class="form-control" min="0">
+                    <input type="time" step="9000" class="form-control">
                     <label>Termino: </label>
-                    <input type="text" class="form-control" min="0">
+                    <input type="time" step="9000" class="form-control">
                 </div>
                 <div class="form-group col-md-2">
                     <label><b>Jueves:</b></label><br>
                     <label>Inicio: </label>
-                    <input type="text" class="form-control" min="0">
+                    <input type="time" step="9000" class="form-control">
                     <label>Termino: </label>
-                    <input type="text" class="form-control" min="0">
+                    <input type="time" step="9000" class="form-control">
                 </div>
                 <div class="form-group col-md-2">
                     <label><b>Viernes:</b></label><br>
                     <label>Inicio: </label>
-                    <input type="time" class="form-control">
+                    <input type="time" step="9000" class="form-control">
                     <label>Termino: </label>
-                    <input type="text" class="form-control" min="0">
+                    <input type="time" step="9000" class="form-control">
                 </div>
             </div>
             <hr>
@@ -75,16 +79,33 @@
     </div>
 </template>
 <script>
+import VueAxios from 'vue-axios';
+import axios from 'axios';
 export default {
     name: 'MateriaForm',
     data(){
         return{
+            materias:[]
         }
+    },
+    created(){
+        this.getMaterias();
     },
     mounted(){
     },
     methods:{
-        
+        getMaterias(){
+            this.axios.get(this.$store.state.url+"materia")
+            .then(res=>{
+                this.materias = res.data;
+            })
+        },
+        getProfesores(){
+            this.axios.get(this.$store.state.url+"profesores")
+            .then(res=>{
+                this.profesores = res.data;
+            })
+        }
     }
 }
 </script>
