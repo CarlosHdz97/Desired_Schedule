@@ -156,7 +156,9 @@ export default {
             let url = this.$store.state.url;
             this.axios.post(url+"user", this.userData)
             .then(res => {
-                alert("Usuario registrado exitosamente");
+                
+                console.log(res.status)
+                alert("Usuario registrado exitosamente!");
             })
             .catch(err => console.log(err));
         },

@@ -4,6 +4,18 @@ import Home from './views/Home.vue'
 
 Vue.use(Router)
 
+function beforeEnter (to, from, next) {
+  if(to.matched.some(record=>record.meta.reqAuth)){
+    if(store.state.account.authenticate==false){
+      next({path: '/'})
+    }else{
+      next()
+    }
+  }else{
+    next()
+  }
+}
+
 export default new Router({
   routes: [
     {

@@ -6,18 +6,18 @@
             <div class="form-row">
                 <div class="form-group col-md-2">
                     <label>Secuencia<strong class="text-info">(*)</strong>: </label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" required>
                 </div>
                 <div class="form-group col-md-3">
                     <label>Materia <strong class="text-info">(*)</strong>:</label>
                     <select class="custom-select">
-                        <option v-for="option in materias" :value="option.id" :key="option.id">{{option.nombre}}</option>
+                        <option v-for="option in materias" :value="option.id" :key="option.id" required>{{option.nombre}}</option>
                     </select>
                 </div>
                 <div class="form-group col-md-4">
                     <label>Profesor:</label>
                     <select class="custom-select">
-                        <option v-for="option in materias" :value="option.id" :key="option.id">{{option.nombre}}</option>
+                        <option v-for="option in profesores" :value="option.id" :key="option.id">{{option.apellido_paterno+' '+option.apellido_materno+' '+option.nombres}}</option>
                     </select>
                 </div>
                 <div class="form-group col-md-1">
@@ -73,7 +73,7 @@
             </div>
             <hr>
             <div class="text-right">
-                <button type="button" class="btn btn btn-dark">Guardar cambios</button>
+                <button type="submit" class="btn btn btn-dark">Guardar cambios</button>
             </div>
         </form>
     </div>
@@ -85,11 +85,14 @@ export default {
     name: 'MateriaForm',
     data(){
         return{
-            materias:[]
+            materias:[],
+            profesores:[]
+
         }
     },
     created(){
         this.getMaterias();
+        this.getProfesores();
     },
     mounted(){
     },
@@ -101,7 +104,7 @@ export default {
             })
         },
         getProfesores(){
-            this.axios.get(this.$store.state.url+"profesores")
+            this.axios.get(this.$store.state.url+"user")
             .then(res=>{
                 this.profesores = res.data;
             })

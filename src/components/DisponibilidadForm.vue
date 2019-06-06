@@ -15,27 +15,6 @@
                  <b-table striped hover :items="dias"></b-table>
             </b-col>
         </b-row>
-        <b-row>
-            <b-col cols="12">
-                <p class="h3 text-dark">Lunes</p>
-                <hr>
-                <div class="table-responsive">
-                    <b-card-group deck>
-                        <b-card bg-variant="primary" text-variant="white" header="Primary" class="text-center">
-                            <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-                        </b-card>
-
-                        <b-card bg-variant="secondary" text-variant="white" header="Secondary" class="text-center">
-                            <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-                        </b-card>
-
-                        <b-card bg-variant="success" text-variant="white" header="Success" class="text-center">
-                            <b-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b-card-text>
-                        </b-card>
-                    </b-card-group>
-                </div>
-            </b-col>
-        </b-row>
     </div>
 </template>
 <script>
@@ -46,6 +25,7 @@ export default {
             form:{
                 turno:'Matutino'
             },
+            turno_horario: '7:00-2:00',
             options_turno:[
                 {value: "Matutino", text: "Matutino"},
                 {value: "Vespertino", text: "Vespertino"},
@@ -73,6 +53,7 @@ export default {
     methods:{
         generateHorario(){
             this.horario= [];
+            /*
             if(this.form.turno=="Matutino"){
                 for(let i=7; i<15; i++){
                     this.horario.push({value:i});
@@ -85,6 +66,20 @@ export default {
                 for(let i=7; i<22; i++){
                     this.horario.push({value:i});
                 }
+            }
+            */
+           if(this.form.turno=="Matutino"){
+                this.dias.forEach(dia => {
+                    dia.horario='7:00Hrs - 3:00 Hrs';    
+                });
+            }else if(this.form.turno=="Vespertino"){
+                this.dias.forEach(dia => {
+                    dia.horario='2:00Hrs - 10:00 Hrs';    
+                });
+            }else{
+               this.dias.forEach(dia => {
+                    dia.horario='7:00Hrs - 10:00 Hrs';    
+                });
             }
         }
     }

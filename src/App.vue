@@ -1,6 +1,6 @@
 <template id="template">
   <div id="app" class="container-fluid" :style="[styles]">
-    <b-navbar toggleable="lg" type="light" variant="light">
+    <b-navbar toggleable="lg" type="light" variant="light" v-if="authenticate">
       <b-navbar-brand><router-link to="/" class="text-dark nav-link">Desired Schedule</router-link></b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -16,7 +16,7 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto text-right">
-            <a class="nav-link" href="#"><font-awesome-icon icon="sign-out-alt" class="fa-lg"/></a>
+            <a class="nav-link" @click="logOut"><font-awesome-icon icon="sign-out-alt" class="fa-lg"/></a>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -58,22 +58,39 @@ form{
 </style>
 
 <script>
+import {mapMutations} from 'vuex'
 export default {
   data(){
     return{
+      authenticate: false,
       heightFooter : 0,
       styles: {
         'margin-bottom' : 0,
       }
     }
   },
+  created(){
+    this.checkSession();
+  },
   mounted(){
     this.calcularHeightFooter();
   },
   methods:{
+    ...mapMutations(['deleteSession']),
     calcularHeightFooter(){
       this.heightFooter = document.getElementById("footer").clientHeight;
       this.styles["margin-bottom"] = this.heightFooter+10+'px';
+    },
+    checkSession(){
+      if(localStorage.getItem("authenticate")){
+        this.authenticate = true;
+      }
+    },
+    logOut(){
+      alert('Ha cerrado su sesión con éxito!')
+      this.$store.commit('deleteSession');
+      window.location.href = 'http://localhost:8080/Desired_Schedule/#/';
+      this.$router.push({path:'/'});
     }
   }
 }

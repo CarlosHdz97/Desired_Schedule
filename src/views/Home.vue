@@ -6,7 +6,7 @@
           <p class="lead text-justify">Sistema que permite la asignación de profesores a las materias impartidas cada periodo escolar por la academia de informática de la UPIICSA.</p>
           <hr class="my-4">
           <div class="text-right">
-            <router-link to="/logIn" class="btn btn-dark btn-lg" role="button">Inicio de sesión</router-link>
+            <router-link to="/logIn" class="btn btn-dark btn-lg" role="button"  v-if="!authenticate">Inicio de sesión</router-link>
           </div>  
         </div>
     </div>
@@ -15,3 +15,22 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  data(){
+    return{
+      authenticate:false,
+    }
+  },
+  create(){
+    this.checkSession();
+  },
+  methods:{
+    checkSession(){
+      if(localStorage.getItem("authenticate")){
+        this.authenticate = false;
+      }
+    }
+  }
+}
+</script>
