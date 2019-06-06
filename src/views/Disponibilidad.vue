@@ -1,5 +1,5 @@
 <template>
-  <div class="row align-items-start justify-content-center mt-3" style="min-height:88vh">
+  <div class="row align-items-start justify-content-center mt-3" style="min-height:75vh">
       <span class=" col-lg-10 col-md-11">
         <DisponibilidadForm/>
       </span>

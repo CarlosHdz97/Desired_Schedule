@@ -1,5 +1,5 @@
 <template>
-  <div class="row align-items-center" style="min-height:88vh">
+  <div class="row align-items-center" style="min-height:75vh">
     <div class="col-md">
         <div class="jumbotron p-3">
           <h1 class="display-4 text-right">Sistema de asignación de materias</h1>

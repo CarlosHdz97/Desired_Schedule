@@ -1,5 +1,5 @@
 <template>
-  <div class="row align-items-start justify-content-center mt-3" style="min-height:88vh">
+  <div class="row align-items-start justify-content-center mt-3" style="min-height:75vh">
       <span class="col-lg-7 col-md-8">
         <p class="text-dark h4">Materia </p><!--<font-awesome-icon icon="plus-circle" @click="change">-->
             <hr>

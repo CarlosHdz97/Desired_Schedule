@@ -1,5 +1,5 @@
 <template>
-  <div class="row align-items-center justify-content-center" style="min-height:88vh">
+  <div class="row align-items-center justify-content-center" style="min-height:75vh">
       <span class=" col-lg-7 col-md-8">
         <PreferenceUserForm/>
       </span>
