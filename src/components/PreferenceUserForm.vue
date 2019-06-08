@@ -6,7 +6,7 @@
                 <div class="form-group col-md-5">
                         <label>Academia de adscripción:</label>
                         <select class="custom-select" v-model="academia" disabled>
-                            <option v-for="option in academias" :value="option.id" :key="option.id">{{option.text}}</option>
+                            <option v-for="option in academias" :value="option.id" :key="option.id">{{option.nombre}}</option>
                         </select>
                 </div>
                 <div class="form-group col-md-6">
@@ -14,7 +14,7 @@
                         <div class="input-group">
                         <!--<model-select :options="materias" v-model="materia"></model-select>-->
                         <select class="custom-select" v-model="materia" @change="addSubject(materia)">
-                            <option v-for="option in materias" :value="option.id" :key="option.id">{{option.text}}</option>
+                            <option v-for="option in materias" :value="option.id" :key="option.id">{{option.nombre}}</option>
                         </select>
                         <span class="input-group-text"><font-awesome-icon icon="search"/></span>
                     </div>
@@ -68,6 +68,7 @@
             return{
                 materias:[],
                 materias_other_academy:[],
+                
                 academias:[
                     {text: 'Informática', id: 1, 
                     materias:[
@@ -107,6 +108,9 @@
             this.selectMateriasOtherAcademy();
         },
         computed: {
+        },
+        created(){
+            this.getMaterias();
         },
         methods: {
             selectMaterias(){
@@ -156,6 +160,13 @@
                 this.materia_other_academy='';
                 this.materias_other_academy.splice(index,1);
             },
+            getMaterias(){
+                this.axios.get(this.$store.state.url+"materia")
+                .then(res=>{
+                    console.log(res.data)
+                    this.materias = res.data;
+                })
+            }
         }
     }
 </script>

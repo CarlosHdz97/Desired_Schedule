@@ -3,7 +3,7 @@
     <div class="col-md">
         <div class="jumbotron p-3">
           <h1 class="display-4 text-right">Sistema de asignación de materias</h1>
-          <p class="lead text-justify">Sistema que permite la asignación de profesores a las materias impartidas cada periodo escolar por la academia de informática de la UPIICSA.</p>
+          <p class="lead text-justify">Sistema que permite la asignación de materias impartidas a los profesores de cada periodo escolar por la academia de informática de la UPIICSA.</p>
           <hr class="my-4">
           <div class="text-right">
             <router-link to="/logIn" class="btn btn-dark btn-lg" role="button"  v-if="!authenticate">Inicio de sesión</router-link>
