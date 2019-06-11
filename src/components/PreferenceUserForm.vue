@@ -6,7 +6,7 @@
                 <div class="form-group col-md-5">
                         <label>Academia de adscripción:</label>
                         <select class="custom-select" v-model="academia" disabled>
-                            <option v-for="option in academias" :value="option.id" :key="option.id">{{option.nombre}}</option>
+                            <option v-for="option in academias" :value="option.id" :key="option.id">{{option.text}}</option>
                         </select>
                 </div>
                 <div class="form-group col-md-6">
@@ -25,7 +25,7 @@
                     <label><strong>Materias de la academia:</strong></label>
                     <b-list-group>
                         <b-list-group-item class="d-flex justify-content-between align-items-center" v-for="materia in materias_selected" :key="materia.id">
-                            {{materia.name}}
+                            {{materia.nombre}}
                             <b-badge variant="primary" pill>{{materia.prioridad}}</b-badge>
                         </b-list-group-item>
                         <b-alert show v-if="materias_selected.length<5">
@@ -34,12 +34,12 @@
                     </b-list-group>
                 </div>
             </div>
-            <div class="form-row justify-content-end">
+            <!-- <div class="form-row justify-content-end">
                 <div class="form-group col-md-6">
                     <label>Materias<strong class="text-info">(*)</strong>:</label>
                     <div class="input-group">
                         <select class="custom-select" v-model="materia_other_academy" @change="addSubjectOtherAcademy(materia_other_academy)">
-                            <option v-for="option in materias_other_academy" :value="option.id" :key="option.id">{{option.text}}</option>
+                            <option v-for="option in materias_other_academy" :value="option.id" :key="option.id">{{option.nombre}}</option>
                         </select>
                         <span class="input-group-text"><font-awesome-icon icon="search"/></span>
                     </div>
@@ -58,7 +58,7 @@
                         </b-list-group-item>
                     </b-list-group>
                 </div>
-            </div>
+            </div> -->
         </form>
     </div>
 </template>
@@ -104,13 +104,13 @@
             }
         },
         mounted(){
-            this.selectMaterias();
-            this.selectMateriasOtherAcademy();
+            //this.selectMaterias();
+            //this.selectMateriasOtherAcademy();
+            this.getMaterias();
         },
         computed: {
         },
         created(){
-            this.getMaterias();
         },
         methods: {
             selectMaterias(){
@@ -131,7 +131,7 @@
                         alert("Se han agregado sus 5 materias de forma correcta");
                     }
                     var index = this.materias.map(function (materia) { return materia.id;}).indexOf(subject);
-                    this.materias_selected.push({id:this.materias[index].id, name: this.materias[index].text, prioridad:this.materias_selected.length+1});
+                    this.materias_selected.push({id:this.materias[index].id, nombre: this.materias[index].nombre, prioridad:this.materias_selected.length+1});
                     this.removeSubject(this.materias[index]);
                 }else{
                     alert('Usted ya ha seleccionado sus 5 materias.');
@@ -163,7 +163,6 @@
             getMaterias(){
                 this.axios.get(this.$store.state.url+"materia")
                 .then(res=>{
-                    console.log(res.data)
                     this.materias = res.data;
                 })
             }

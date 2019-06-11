@@ -1,6 +1,6 @@
 <template>
     <div>
-        <table class="col-12 table table-striped table-responsive" id="detalles">
+        <!-- <table class="col-12 table table-striped table-responsive" id="detalles">
           <thead>
             <tr>
               <th scope="col">Reporte</th>
@@ -36,6 +36,28 @@
               <th><button class="btn btn-danger" onclick="delete_item()"><font-awesome-icon icon="minus-circle"/></button></th>
             </tr>
           </tbody>
-          </table>
+          </table> -->
+          <b-table striped hover :items="profesores" :fields="fields"></b-table>
     </div>
 </template>
+<script>
+export default {
+  created(){
+    this.getProfesor()
+  },
+  data(){
+    return{
+      fields: ['curp','nombres', 'email','nivel_academico', 'formacion_academica', 'horas_nombramiento'],
+      profesores:[]
+    }
+  },
+  methods:{
+    getProfesor(){
+                this.axios.get(this.$store.state.url+"user")
+                .then(res=>{
+                  this.profesores = res.data;
+                })
+            }
+  }
+}
+</script>

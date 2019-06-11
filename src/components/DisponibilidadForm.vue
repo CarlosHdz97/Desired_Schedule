@@ -44,42 +44,44 @@ export default {
                 {'Día': "Miercoles", horario:[]},
                 {'Día': "Jueves", horario:[]},
                 {'Día': "Viernes", horario:[]},
-            ]
+            ],
+            i:0
         }
     },
     created(){
+        this.checkTurno()
         this.generateHorario()
     },
+    computed:{
+    },
     methods:{
+        checkTurno(){
+            console.log(localStorage.turno);
+            if(localStorage.turno){
+                this.form.turno = localStorage.turno;
+            }
+        },
         generateHorario(){
             this.horario= [];
-            /*
-            if(this.form.turno=="Matutino"){
-                for(let i=7; i<15; i++){
-                    this.horario.push({value:i});
-                }
-            }else if(this.form.turno=="Vespertino"){
-                for(let i=15; i<22; i++){
-                    this.horario.push({value:i});
-                }
-            }else{
-                for(let i=7; i<22; i++){
-                    this.horario.push({value:i});
-                }
-            }
-            */
            if(this.form.turno=="Matutino"){
+               localStorage.turno = "Matutino";
                 this.dias.forEach(dia => {
                     dia.horario='7:00Hrs - 3:00 Hrs';    
                 });
             }else if(this.form.turno=="Vespertino"){
+                localStorage.turno = "Vespertino";
                 this.dias.forEach(dia => {
                     dia.horario='2:00Hrs - 10:00 Hrs';    
                 });
             }else{
+                localStorage.turno = "Mixto";
                this.dias.forEach(dia => {
                     dia.horario='7:00Hrs - 10:00 Hrs';    
                 });
+            }
+            this.i++
+            if(this.i>1){
+                alert("Se han guardado los cambios");
             }
         }
     }

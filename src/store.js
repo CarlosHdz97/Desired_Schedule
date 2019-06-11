@@ -16,24 +16,37 @@ export default new Vuex.Store({
   },
   mutations: {
     authentication(state, data){
-      state.account = data;
+      state.account.authenticate = data.authenticate;
+      state.account.token = data.token;
+      state.account.id = data.id;
+      state.account.nombres = data.nombres;
+      state.account.apellido_paterno = data.apellido_paterno;
       localStorage.setItem("authenticate",data.authenticate);
       localStorage.setItem("token",data.token);
       localStorage.setItem("id",data.id);
-      localStorage.setItem("name",data.name);
-      localStorage.setItem("surname",data.surname);
+      localStorage.setItem("nombres",data.nombres);
+      localStorage.setItem("apellido_paterno",data.apellido_paterno);
     },
     deleteSession(state){
-      state.authenticate = false;
+      state.account.authenticate = false;
       localStorage.removeItem("authenticate");
-      state.token = ''; 
+      state.account.token = null; 
       localStorage.removeItem("token");
-      state.id = ''; 
+      state.account.id = null; 
       localStorage.removeItem("id");
-      state.name = ''; 
-      localStorage.removeItem("name");
-      state.surname = ''; 
-      localStorage.removeItem("surname");
+      state.account.name = null; 
+      localStorage.removeItem("nombres");
+      state.account.surname = null; 
+      localStorage.removeItem("apellido_paterno");
+    },
+    checkSession(state){
+      let active = localStorage.getItem("authenticate");
+      if(active){
+        state.account.authenticate = localStorage.getItem("authenticate");
+        state.account.token = localStorage.getItem("token");
+        state.account.name = localStorage.getItem("nombres");
+        state.account.surname = localStorage.getItem("apellido_paterno");
+      }
     }
   },
   actions: {

@@ -62,10 +62,20 @@
                     </select>
                 </div>
                 <div class="form-group col-md-6">
+                    <label>Puesto<strong class="text-info">(*)</strong>:</label>
+                    <select class="custom-select" required v-model="userData.rol_id">
+                        <option v-for="option in options_puesto" :value="option.value" :key="option.value">{{option.text}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6" v-if="userData.rol_id==2">
                     <label>Academia de adscripción<strong class="text-info">(*)</strong>:</label>
                     <select class="custom-select" required v-model="userData.academia">
-                        <option v-for="option in options_academias" :value="option.value" :key="option.value">{{option.text}}</option>
+                        <option v-for="option in options_academias" :value="option.id" :key="option.id">{{option.nombre}}</option>
                     </select>
+                </div>
+                <div class="form-group col-md-6" v-if="userData.rol_id==1">
+                    <label>Nombre de la academia <strong class="text-info">(*)</strong>:</label>
+                    <input type="text" class="form-control" placeholder="Ingrese el nombre de la academia" required v-model="userData.newAcademia">
                 </div>
             </div>
             <p class="text-dark h4">Contraseña</p>
@@ -94,6 +104,7 @@
     </div>
 </template>
 <script>
+import AcademiaAPI from '@/services/API/Academia.js'
 export default {
     name: 'DataUserForm',
     data(){
@@ -103,8 +114,6 @@ export default {
             options_hrs:[
                 {text: '1 Hora', value: 1}
             ],options_academias:[
-                {text: 'Informatica', value: 1},
-                {text: 'Computación', value: 2},
             ],
             password:'',
             confirm_password:'',
@@ -132,6 +141,10 @@ export default {
                 {text: 'Asistente B', value: 'Asistente B'},
                 {text: 'Asistente C', value: 'Asistente C'},
             ],
+            options_puesto:[
+                {text: 'Jefe de academia', value: '1'},
+                {text: 'Profesor', value: '2'}
+            ],
             userData:{
                 curp:'',
                 apellido_paterno:'',
@@ -144,7 +157,8 @@ export default {
                 horas_nombramiento: '',
                 dictamen_categoria_docente: '',
                 rol_id: 2,
-                password: ''
+                password: '',
+                newAcademia:''
             }
         }
     },
@@ -160,12 +174,23 @@ export default {
                 console.log(res.status)
                 alert("Usuario registrado exitosamente!");
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log(err)
+                alert("Verifique que todos los campos hayan sido llenados correctamente")
+            });
         },
         generateOptions(){
+            //generar horas
             for(var i=2; i<=40; i++){
                 this.options_hrs.push({text: i+' Horas', value: i});
             }
+            //obtener academias
+            AcademiaAPI.tryGet()
+            .then(res=>{
+                this.options_academias = res;
+            }).catch(err=>{
+                console.log(err.response.data)
+            });
         },
         validatePassword(){
             if(this.userData.password!='' && this.confirm_password!=''){

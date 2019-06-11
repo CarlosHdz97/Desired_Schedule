@@ -62,7 +62,6 @@ import {mapMutations} from 'vuex'
 export default {
   data(){
     return{
-      authenticate: false,
       heightFooter : 0,
       styles: {
         'margin-bottom' : 0,
@@ -70,26 +69,28 @@ export default {
     }
   },
   created(){
-    this.checkSession();
+    this.recoverySessionData();
+  },
+  computed:{
+    authenticate(){
+     return this.$store.state.account.authenticate;
+    }
   },
   mounted(){
     this.calcularHeightFooter();
   },
   methods:{
     ...mapMutations(['deleteSession']),
+    recoverySessionData(){
+      this.$store.commit('checkSession');
+    },
     calcularHeightFooter(){
       this.heightFooter = document.getElementById("footer").clientHeight;
       this.styles["margin-bottom"] = this.heightFooter+10+'px';
     },
-    checkSession(){
-      if(localStorage.getItem("authenticate")){
-        this.authenticate = true;
-      }
-    },
     logOut(){
       alert('Ha cerrado su sesión con éxito!')
       this.$store.commit('deleteSession');
-      window.location.href = 'http://localhost:8080/Desired_Schedule/#/';
       this.$router.push({path:'/'});
     }
   }

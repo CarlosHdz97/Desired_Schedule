@@ -47,10 +47,8 @@ export default {
                     alert(res.data.msg);
                 }else{
                     this.$store.commit('authentication',res.data);
-                    localStorage.setItem("authenticate",true);
                     alert("Bienvenido "+ res.data.name+ ' '+ res.data.surname+"!");
-                    //this.$router.push({path:'preference'});
-                    window.location.href = 'http://localhost:8080/Desired_Schedule/#/preference';
+                    this.$router.push({path:'preference'});
                 }
             })
             .catch(err => console.log(err));
